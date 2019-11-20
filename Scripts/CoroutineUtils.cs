@@ -182,9 +182,9 @@ namespace KoganeUnityLib
 		//==============================================================================
 		// StartCoroutine
 		//==============================================================================
-		public static void StartCoroutine( IEnumerator routice )
+		public static Coroutine StartCoroutine( IEnumerator routice )
 		{
-			_monoBehaviour.StartCoroutine( routice );
+			return _monoBehaviour.StartCoroutine( routice );
 		}
 	}
 }
