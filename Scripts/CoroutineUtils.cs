@@ -2,23 +2,26 @@
 using System.Collections;
 using UnityEngine;
 
-namespace KoganeUnityLib
+namespace UniCoroutine
 {
 	/// <summary>
 	/// コルーチンに関する汎用クラス
 	/// </summary>
 	public static class CoroutineUtils
 	{
-		//==============================================================================
-		// 変数(readonly)
-		//==============================================================================
-		private static readonly MonoBehaviour _monoBehaviour;
+		//================================================================================
+		// 変数（static readonly）
+		//================================================================================
+		private static readonly MonoBehaviour m_monoBehaviour;
 
-		private static bool IsInvalid => _monoBehaviour == null || _monoBehaviour.gameObject == null;
+		//================================================================================
+		// プロパティ（static）
+		//================================================================================
+		private static bool IsInvalid => m_monoBehaviour == null || m_monoBehaviour.gameObject == null;
 
-		//==============================================================================
+		//================================================================================
 		// 関数
-		//==============================================================================
+		//================================================================================
 		/// <summary>
 		/// コルーチンを管理するゲームオブジェクトを生成するコンストラクタ
 		/// </summary>
@@ -26,12 +29,12 @@ namespace KoganeUnityLib
 		{
 			var gameObject = new GameObject( "CoroutineUtils" );
 			GameObject.DontDestroyOnLoad( gameObject );
-			_monoBehaviour = gameObject.AddComponent<FooBehaviour>();
+			m_monoBehaviour = gameObject.AddComponent<FooBehaviour>();
 		}
-		
-		//==============================================================================
+
+		//================================================================================
 		// CallWaitForCondition
-		//==============================================================================
+		//================================================================================
 		/// <summary>
 		/// 条件を満たしたら Action デリゲートを呼び出します
 		/// </summary>
@@ -45,7 +48,7 @@ namespace KoganeUnityLib
 				return;
 			}
 
-			_monoBehaviour.StartCoroutine( DoCallWaitForCondition( gameObject, condition, callback ) );
+			m_monoBehaviour.StartCoroutine( DoCallWaitForCondition( gameObject, condition, callback ) );
 		}
 
 		/// <summary>
@@ -71,7 +74,7 @@ namespace KoganeUnityLib
 				return;
 			}
 
-			_monoBehaviour.StartCoroutine( DoCallWaitForCondition( condition, callback ) );
+			m_monoBehaviour.StartCoroutine( DoCallWaitForCondition( condition, callback ) );
 		}
 
 		/// <summary>
@@ -82,10 +85,10 @@ namespace KoganeUnityLib
 			while ( !condition() ) yield return 0;
 			callback?.Invoke();
 		}
-		
-		//==============================================================================
+
+		//================================================================================
 		// CallWaitForEndOfFrame
-		//==============================================================================
+		//================================================================================
 		/// <summary>
 		/// 1 フレーム待機してから Action デリゲートを呼び出します
 		/// </summary>
@@ -93,7 +96,7 @@ namespace KoganeUnityLib
 		{
 			if ( IsInvalid ) return;
 
-			_monoBehaviour.StartCoroutine( DoCallWaitForEndOfFrame( gameObject, callback ) );
+			m_monoBehaviour.StartCoroutine( DoCallWaitForEndOfFrame( gameObject, callback ) );
 		}
 
 		/// <summary>
@@ -105,7 +108,7 @@ namespace KoganeUnityLib
 			if ( gameObject == null ) yield break;
 			callback?.Invoke();
 		}
-		
+
 		/// <summary>
 		/// 1 フレーム待機してから Action デリゲートを呼び出します
 		/// </summary>
@@ -113,7 +116,7 @@ namespace KoganeUnityLib
 		{
 			if ( IsInvalid ) return;
 
-			_monoBehaviour.StartCoroutine( DoCallWaitForEndOfFrame( callback ) );
+			m_monoBehaviour.StartCoroutine( DoCallWaitForEndOfFrame( callback ) );
 		}
 
 		/// <summary>
@@ -124,24 +127,24 @@ namespace KoganeUnityLib
 			yield return 0;
 			callback?.Invoke();
 		}
-		
-		//==============================================================================
+
+		//================================================================================
 		// CallWaitForSeconds
-		//==============================================================================
+		//================================================================================
 		/// <summary>
 		/// 指定された秒数待機してから Action デリゲートを呼び出します
 		/// </summary>
 		public static void CallWaitForSeconds( GameObject gameObject, float seconds, Action callback )
 		{
 			if ( IsInvalid ) return;
-			
+
 			if ( seconds <= 0 )
 			{
 				callback?.Invoke();
 				return;
 			}
 
-			_monoBehaviour.StartCoroutine( DoCallWaitForSeconds( gameObject, seconds, callback ) );
+			m_monoBehaviour.StartCoroutine( DoCallWaitForSeconds( gameObject, seconds, callback ) );
 		}
 
 		/// <summary>
@@ -160,14 +163,14 @@ namespace KoganeUnityLib
 		public static void CallWaitForSeconds( float seconds, Action callback )
 		{
 			if ( IsInvalid ) return;
-			
+
 			if ( seconds <= 0 )
 			{
 				callback?.Invoke();
 				return;
 			}
 
-			_monoBehaviour.StartCoroutine( DoCallWaitForSeconds( seconds, callback ) );
+			m_monoBehaviour.StartCoroutine( DoCallWaitForSeconds( seconds, callback ) );
 		}
 
 		/// <summary>
@@ -178,13 +181,13 @@ namespace KoganeUnityLib
 			yield return new WaitForSeconds( seconds );
 			callback?.Invoke();
 		}
-		
-		//==============================================================================
+
+		//================================================================================
 		// StartCoroutine
-		//==============================================================================
+		//================================================================================
 		public static Coroutine StartCoroutine( IEnumerator routice )
 		{
-			return _monoBehaviour.StartCoroutine( routice );
+			return m_monoBehaviour.StartCoroutine( routice );
 		}
 	}
 }

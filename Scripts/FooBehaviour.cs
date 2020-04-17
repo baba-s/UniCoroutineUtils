@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 
-namespace KoganeUnityLib
+namespace UniCoroutine
 {
-	// 何もしないコンポーネント
+	/// <summary>
+	/// 何もしないコンポーネント
+	/// </summary>
 	[DisallowMultipleComponent]
 	public sealed class FooBehaviour : MonoBehaviour
 	{

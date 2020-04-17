@@ -1,13 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-namespace KoganeUnityLib
+namespace UniCoroutine
 {
 	/// <summary>
 	/// MonoBehaviour 型の拡張メソッドを管理するクラス
 	/// </summary>
 	public static class MonoBehaviourExt
 	{
+		//================================================================================
+		// 関数（static）
+		//================================================================================
 		/// <summary>
 		/// 条件を満たしたら Action デリゲートを呼び出します
 		/// </summary>
