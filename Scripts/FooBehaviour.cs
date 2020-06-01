@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Kogane
+namespace Kogane.Internal
 {
 	/// <summary>
 	/// 何もしないコンポーネント

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kogane.Internal;
+using System;
 using System.Collections;
 using UnityEngine;
 
