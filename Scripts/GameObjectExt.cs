@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace UniCoroutine
+namespace Kogane
 {
 	/// <summary>
 	/// GameObject 型の拡張メソッドを管理するクラス

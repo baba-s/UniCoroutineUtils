@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace UniCoroutine
+namespace Kogane
 {
 	/// <summary>
 	/// MonoBehaviour 型の拡張メソッドを管理するクラス

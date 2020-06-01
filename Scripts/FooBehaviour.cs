@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-namespace UniCoroutine
+namespace Kogane
 {
 	/// <summary>
 	/// 何もしないコンポーネント
 	/// </summary>
 	[DisallowMultipleComponent]
-	public sealed class FooBehaviour : MonoBehaviour
+	internal sealed class FooBehaviour : MonoBehaviour
 	{
 	}
 }

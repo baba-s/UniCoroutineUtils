@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace UniCoroutine
+namespace Kogane
 {
 	/// <summary>
 	/// コルーチンに関する汎用クラス
