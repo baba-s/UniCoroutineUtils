@@ -13,12 +13,13 @@ namespace Kogane
 		//================================================================================
 		// 変数（static readonly）
 		//================================================================================
-		private static readonly MonoBehaviour m_monoBehaviour;
+		private static MonoBehaviour m_monoBehaviour;
 
 		//================================================================================
 		// プロパティ（static）
 		//================================================================================
 		private static bool IsInvalid => m_monoBehaviour == null || m_monoBehaviour.gameObject == null;
+		private static bool IsValid   => !IsInvalid;
 
 		//================================================================================
 		// 関数
@@ -26,9 +27,16 @@ namespace Kogane
 		/// <summary>
 		/// コルーチンを管理するゲームオブジェクトを生成するコンストラクタ
 		/// </summary>
-		static CoroutineUtils()
+		[RuntimeInitializeOnLoadMethod( RuntimeInitializeLoadType.BeforeSceneLoad )]
+		private static void Initialize()
 		{
+			if ( IsValid )
+			{
+				GameObject.Destroy( m_monoBehaviour.gameObject );
+			}
+
 			var gameObject = new GameObject( "CoroutineUtils" );
+			gameObject.hideFlags = HideFlags.HideAndDontSave;
 			GameObject.DontDestroyOnLoad( gameObject );
 			m_monoBehaviour = gameObject.AddComponent<FooBehaviour>();
 		}
